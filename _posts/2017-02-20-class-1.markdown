@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Cvičenie č. 1 - Úvod, organizácia a opakovanie"
-date: 2017-02-19 5:01:00 +0100
+date: 2017-02-20 5:01:00 +0100
 categories: NPRG031
 ---
 # Organizácia
@@ -45,8 +45,11 @@ Všetky organizačné záležitosti nájdete na stránke <a href="/about">O cvi�
   * Kedy je výhodné použiť BFS a kedy zas DFS?
   * Ako sa dajú naimplementovať?
 1. Na nejakom príklade vysvetlite metódu rozdelu ja panuj.
-1. Uveďte hlavnú myšlienku algoritmu minimax.
-1. Definujte dátové štruktúry binárneho vyhľadávacieho stromu a binárnej haldy?
+1. Definujte dátovú štruktúru binárneho vyhľadávacieho stromu a binárnej haldy.
   * Aký je medzi nimi rozdieľ?
 1. Aká je základná myšlienka hash-ovania?
 1. Vysvetlite rozdiel medzi prefixovou, infixovou a postfixovou notáciou aritmetického výrazu.
+
+# Do ďalšieho cvičenia
+
+* Skontrolujte si, že ste v **Codexe** priradený do skupiny **NPRG031-PZ-2016/2017**.

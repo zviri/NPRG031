@@ -9,7 +9,7 @@ Práve sa nachádzate na stránkach k cvičeniam z [Programování 2](https://is
 1. Účašť na cvičeniach aspoň **70%**.
 2. Získanie aspoň **70%** zo všetkých povinných domácich úloh.
 3. Úspešné zvládnutie zápočtovej písomky.
-4. **Včasné**  odovzdanie **funknčného** zápočtové programu aj s povinnými prílohami.
+4. **Včasné**  odovzdanie **funkčného** zápočtové programu aj s povinnými prílohami.
 
 ### Domáce úlohy
 Časť domácich úloh mi budete odovzdávať **e-mailom** a zvyšok do systému [CodEx](https://codex.ms.mff.cuni.cz/codex-prg/). Termín odovzdania bude vždy do večera pred ďalším cvičením, konkrétne do **nedele 23:59**. Ak odovzdáte riešenie neskôr, avšak max. týždeň po termíne dostanete polovicu bodov za danú úlohu.
@@ -26,14 +26,14 @@ V prípade ak vaše riešenie nedostane plný počet bodov, tak môžete poslať
 
 
 ### Zápočtová písomka
-Bude sa konať **na posledných 2 cvičenach** a predmetom písomky bude napísanie nejakého programu, ktorý bude riešiť niečo z toho, čo sa prebralo na cvičeniach. Na splnenie písomky budú k dispozícii **3 termíny**.
+Prvý a druhý termín sa bude konať **na posledných 2 cvičenach** a predmetom písomky bude napísanie a odladenie nejakého programu (tzn. priamo vo Visual Studiu), ktorý bude riešiť niečo z toho, čo sa prebralo na cvičeniach. Na splnenie písomky budú k dispozícii celkovo **3 termíny**.
 
 ### Zápočtový program
 
 Dôležité termíny:
 
-1. Záväzná špecifikácia do **30. 9. 2017**.
-2. Odovzdanie finálnej verzie do konca skúškového v zimnom semestri tj. **30. 9. 2017**.
+1. Záväzná špecifikácia do **29. 5. 2017** (začiatok skúškového v LS).
+2. Odovzdanie finálnej verzie do konca skúškového v zimnom semestri tj. **30. 9. 2017** (koniec školského roka).
 
 #### Špecifikácia
 Špecifikáciu píšte tak, ako keby ste písali zadanie ulohy do **CodEx**-u. Jej hlavným cieľom je priblížiť riešenú problematiku. Malo by z nej byť jasné čo presne bude daný program riešiť a každý programátor by mal vedieť podľa tejto špecifikácie výsledný program vytvoriť. Špecifikácia by preto mala obsahovať minimálne:
@@ -51,6 +51,7 @@ Odovzdanie zápočtového programu bude prebiehať nasledovne:
 1. E-mailom my pošlete zdrojový kód, dokumentáciu a testovacie dáta (ak sú nejaké potrebné).
 2. Dohodneme sa na termíne odovzdania.
 3. Stretneme sa a výsledný program mi predvediete osobne.
+   * Ak budete mať dostatok bodov za DÚ (cca. 90% +), tak predvádzanie môžme preskočiť.
 
 Odovzdaný zdrojový kód by mal byť rozumne naformátovaný a okomentovaný.
 
