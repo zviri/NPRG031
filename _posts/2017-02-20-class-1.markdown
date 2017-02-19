@@ -1,0 +1,52 @@
+---
+layout: post
+title:  "Cvičenie č. 1 - Úvod, organizácia a opakovanie"
+date: 2017-02-19 5:01:00 +0100
+categories: NPRG031
+---
+# Organizácia
+Všetky organizačné záležitosti nájdete na stránke <a href="/about">O cvičeniach</a>.
+
+**Hrubá osnova:**
+
+* jazyk C#
+* vývojové prostredie **MS Visual Studio**
+  * písanie a ladenie programov
+* základy objektovo orientovaného programovania (**OOP**)
+* ďalšie užitočné algoritmy a prístupy
+  * napr. dynamické programovanie
+* možno: okenné aplikácie, udalosti a grafika
+
+**Cvičenia Martina Mareša**
+
+* výberové cvičenie pre pokročilých študentov v rámci NPRG031
+
+# Opakovanie
+
+1. Vysvetlite pojem algoritmus.
+1. Čo je to zložitosť algoritmu a asymptotická notácia?
+   * Aké základné druhy zložitosti existujú?
+1. Aký je rozdiel medzi syntaktickou, behovou (runtime) a logickou chybou v programe?
+1. Čo je to syntax a sémantika progamovacieho jazyka?
+1. Vysvetlite pojmy identifikátor, premenná, typ premennej a konštanta.
+1. Ako sa líšia globálne a lokálne premenné?
+1. Čo sú to procedúry a funkcie, ako sa od seba líšia?
+1. Aký je rozdiel medzi predávaním parametru hodnotou vs. odkazom (referenciou)?
+1. Aké podmienené príkazy poznáte?
+1. Aké druhy cyklov poznáte a aké sú ich možnosti prerušenia?
+1. Čo je to aritmetické pretečenie a zaokrúhlovacia chyba?
+1. Aké triediace algoritmy poznáte? Uveďte myšlienu, časovú a pamäťovú zložitosť.
+1. Popíšte dátové štruktúry zásobník a fronta.
+1. Aké sú rozdiely medzi statickou alokáciou pamäti na zásobníku a dynamickou alokáciou na halde?
+1. Čo je to ukazateľ (pointer) určitého dátového typu?
+1. Čo sú dynamické dátové štruktúry? Uveďte príklady.
+1. Čo je to rekurzia? Čo je to koncová rekurzia? Dá sa rekurzii vyhnúť?
+1. Vysvetlite algoritmus prehľadávania do šírky (BFS) a do hĺbky (DFS).
+  * Kedy je výhodné použiť BFS a kedy zas DFS?
+  * Ako sa dajú naimplementovať?
+1. Na nejakom príklade vysvetlite metódu rozdelu ja panuj.
+1. Uveďte hlavnú myšlienku algoritmu minimax.
+1. Definujte dátové štruktúry binárneho vyhľadávacieho stromu a binárnej haldy?
+  * Aký je medzi nimi rozdieľ?
+1. Aká je základná myšlienka hash-ovania?
+1. Vysvetlite rozdiel medzi prefixovou, infixovou a postfixovou notáciou aritmetického výrazu.
