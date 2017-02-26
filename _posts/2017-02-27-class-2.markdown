@@ -1,0 +1,41 @@
+---
+layout: post
+title:  "Cvičenie č. 2 - C# a MS Visual Studio"
+date: 2017-02-27 5:01:00 +0100
+categories: NPRG031
+---
+# Úvod
+
+* MS Visual Studio
+  * [MSNDAA](https://www.win.ms.mff.cuni.cz/elms2/login.aspx?action=signin)
+* konzolová aplikácia
+  * načítanie vstupu
+  * vypisovanie na výstup
+* debugging
+  * breakpoint
+    * podmienený breakpoint
+  * variables
+  * call stack
+  * immediate window
+* príklad implementácie "hádaj číslo"
+* práca s poľom
+
+# Bubble Sort
+
+Naimplementujte algoritmus *Bubble Sort*. Vaše riešenie by malo obsahovať:
+* Načítanie vstupu z konzole
+* Výpis vstupného poľa
+* Zoradenie poľa
+* Výpis zoradeného poľa
+
+```c#
+public static void bubbleSort(int[] arr)
+{
+  // ...
+}
+
+```
+
+# Do ďalšieho cvičenia
+
+* Skontrolujte si, že ste v **Codexe** priradený do skupiny **NPRG031-PZ-2016/2017**.
