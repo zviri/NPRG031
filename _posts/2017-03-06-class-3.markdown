@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Cvičenie č. 2 - Úvod do OOP"
+title:  "Cvičenie č. 3 - Úvod do OOP"
 date: 2017-03-06 5:01:00 +0100
 categories: NPRG031
 ---
