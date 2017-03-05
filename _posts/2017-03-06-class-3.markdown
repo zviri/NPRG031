@@ -1,0 +1,136 @@
+---
+layout: post
+title:  "Cvičenie č. 2 - Úvod do OOP"
+date: 2017-03-06 5:01:00 +0100
+categories: NPRG031
+---
+# Dôležité pojmy
+
+* trieda vs objekt vs inštancia (class vs object vs instance)
+* konštruktor (constructor)
+* preťažovanie metód a konštruktorov
+* statické triedy a metódy
+* virtuálne a abstraktné metódy
+* 3 základné princípy OOP:
+  * zapúzdrenie (encapsulation)
+  * dedičnosť (inheritance)
+  * polymorfizmus (polymorphism)
+
+# Príklad č. 1: Objektová reprezentácia 2D geometrických útvarov
+
+Navrhnite a naprogramujte reprezentáciu 2D geometrických útvarov: **trojuhoľník**, **štvorec**, **obdĺžník** a **kruh**.
+Každý útvar musí vedieť:
+
+* spočítať svoj obsah
+* uchovať si svoju farbu reprezentovanú výčtovým typom (**enum**)
+* vedieť vypísať svoju farbu ako reťazec
+
+Na záver napíšte metódu, ktorá dostane na vstup zoznam inštancií (napr. kruh, kruh, štvorec...) týchto útvarov a vráti súčet ich obsahov.
+
+# Príklad č. 2: Objektová reprezentácia a implementácia listu"
+
+Napíšte **2** rôzne implementácie rozhrania pre štruktúru reprezentujúcu **list** celých čísel, tzn. **int**-ov podľa interfacu definovaného nižšie.
+Prvá implementácia musí byť **spojákom (LinkedList)** a druhá **poľom (ArrayList)**.
+
+Ak si všimnete nejaký kód, ktorý by si dal vyabstrahovať a použiť pre obe implementácie (**hint:** metóda **print**),
+tak ho vložte do abstraktnej triedy, ktorú si vytvorte (podobne ako u príkladu č. 1).
+
+```c#
+interface IList
+{
+  // appends one element to the end of the list
+  void add(int element);
+
+  // returns element on given index (index starts at 0!)
+  int get(int index);
+
+  // returns the size of the list, i.e., number of elements in the list
+  int size();
+
+  // remove the first occurrence of the given element in the list.
+  int remove(int element);
+
+  // prints the elements in the list on one line, e.g. "1 2 3 4 5"
+  void print();
+}
+
+class LinkedList : IList
+{
+  public void add(int element)
+  {
+      throw new NotImplementedException();
+  }
+
+  public int get(int index)
+  {
+      throw new NotImplementedException();
+  }
+
+  public int remove(int element)
+  {
+      throw new NotImplementedException();
+  }
+
+  public int size()
+  {
+      throw new NotImplementedException();
+  }
+
+  public void print()
+  {
+      throw new NotImplementedException();
+  }
+}
+
+class ArrayList : IList
+{
+  public void add(int element)
+  {
+      throw new NotImplementedException();
+  }
+
+  public int get(int index)
+  {
+      throw new NotImplementedException();
+  }
+
+  public int remove(int element)
+  {
+      throw new NotImplementedException();
+  }
+
+  public int size()
+  {
+      throw new NotImplementedException();
+  }
+
+  public void print()
+  {
+      throw new NotImplementedException();
+  }
+}
+
+static void Main(string[] args)
+{
+  IList list = new LinkedList();
+  // Must print the same thing for both implementations!
+  // IList list = new LinkedList();
+  list1.add(1);
+  list1.add(2);
+  list1.add(3);
+  list1.add(4);
+  list1.add(1);
+  list1.print(); // prints "1 2 3 4 1"
+}
+
+```
+
+# Domáca úloha č. 1
+Doprogramujte úlohu **č. 2** a a riešenie mi pošlite mailom. Pošlite mi zabalený (prosím **.zip**) projekt Visual Studia.
+Vaše riešenie si doneste na ďaľšie cvičenie, budeme s ním pokračovať ďalej.
+
+**Termín odovzdania: 12. 3. 2017(23:59)**
+
+**Spôsob odovzdania: zdrojový kód mailom**
+
+**Počet bodov: 20**
