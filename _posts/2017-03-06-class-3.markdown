@@ -27,6 +27,7 @@ Každý útvar musí vedieť:
 
 Na záver napíšte metódu, ktorá dostane na vstup zoznam inštancií (napr. kruh, kruh, štvorec...) týchto útvarov a vráti súčet ich obsahov.
 
+
 **Riešenie:**
 ```c#
 namespace Class3
@@ -142,8 +143,8 @@ namespace Class3
   class Program
   {
     // Metoda pocitajuca sumu obsahov objektov, ktore dostane na vstup v poli.
-    // Vsimnite si, ze tato metoda pracuje s objektami, len cez interface Object2D
-    // a vobec ju nezaujima, ci je objekt typu Circle alebo Triangle.
+    // Vsimnite si, ze tato metoda pracuje s objektami, len cez interface
+    // Object2D a vobec ju nezaujima, ci je objekt typu Circle alebo Triangle.
     // Jedine co tuto metodu zaujima je, ze tieto objekty
     // implementuju metodu calculateArea.
    public static double calculateSum(Object2D[] objects)
