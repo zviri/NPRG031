@@ -27,6 +27,160 @@ Každý útvar musí vedieť:
 
 Na záver napíšte metódu, ktorá dostane na vstup zoznam inštancií (napr. kruh, kruh, štvorec...) týchto útvarov a vráti súčet ich obsahov.
 
+**Riešenie:**
+```c#
+namespace Class3
+{
+  // Vyctovy typ reprezentujuci farbu.
+  enum Color {
+    BLACK, RED, BLUE, WHITE
+  }
+
+  // Spolocny interface pre vsetky 2D objekty.
+  interface Object2D {
+
+    // Vrati obsah 2D objektu.
+    double calculateArea();
+
+    // Vrati farbu objektu ako string.
+    string getColorAsString();
+
+  }
+
+  // Spolocna abstraktna trieda, ktora implementuje interface Object2D.
+  // V tejto triede naimplementujeme ukladanie a vypisovanie farby objektu,
+  // ktore bude rovnake pre vsetky 2D objekty.
+  abstract class Object2DBase : Object2D
+  {
+    // Premenna pre ulozenie farby objektu.
+    // Miesto privlastku private pouzijeme protected, aby bola tato premenna
+    // pristupna aj z objektov, ktore budu dedit od Object2DBase.
+    protected Color color = Color.BLACK;
+
+    // Implementaciu metody calculateArea este nebudeme implementovat a
+    // preto ju oznacime klucovym slovom abstract a nechame ju bez implementacie.
+    public abstract double calculateArea();
+
+    // Naimplementujeme metodu getColorAsString interfacu Object2D.
+    public string getColorAsString()
+    {
+      switch (this.color)
+      {
+        case Color.BLUE:
+          return "Modra";
+        case Color.WHITE:
+          return "Biela";
+        case Color.RED:
+          return "Cervena";
+        case Color.BLACK:
+          return "Cierna";
+        default:
+          return "Neznama farba";
+      }
+    }
+  }
+
+  // Implementacia kruhu podla interfacu Object2D.
+  // Trieda Circle dedi priamo od Object2DBase a tranzitivne aj
+  // interface Object2D. Takto Circle zdedi vsetok kod, ktory pracuje
+  // s farbou.
+  class Circle : Object2DBase
+  {
+    // Polomer kruhu.
+    private double radius = 0.0;
+
+    // Prvy konstruktor, ktory inicializuje kruh s polomerom radius
+    // a defaultnou farbou.
+    public Circle(double radius)
+    {
+      this.radius = radius;
+    }
+
+    // Druhy konstruktor, ktory inicializuje kruh s polomerom radius
+    // a farbou color.
+    // this(radius) zavola prvy konstruktor s parametrom radius, aby sme
+    // neopakovali kod this.radius = radius;
+    public Circle(double radius, Color color) : this(radius)
+    {
+      this.color = color;
+    }
+
+    // Implementacia vypoctu obsahu kruhu.
+    // Pouzivame klucove slovicko override, ktore explicitne hovori,
+    // ze prepisujeme (overridujeme) metodu calculateArea interfacu Object2D.
+    public override double calculateArea()
+    {
+      return Math.PI * Math.Pow(this.radius, 2);
+    }
+  }
+
+  // Dalsi priklad implementacie trojuholniku.
+  class Triangle : Object2DBase
+  {
+    double a, b, c = 0.0;
+
+    public Triangle(double a, double b, double c)
+    {
+      this.a = a;
+      this.b = b;
+      this.c = c;
+    }
+
+    public Triangle(double a, double b, double c, Color color) : this(a, b, c)
+    {
+      this.color = color;
+    }
+
+    public override double calculateArea()
+    {
+      // Heron's formula
+      double s = (a + b + c) / 2;
+      return Math.Sqrt(s * (s - a) * (s - b) * (s - c));
+    }
+  }
+
+  class Program
+  {
+    // Metoda pocitajuca sumu obsahov objektov, ktore dostane na vstup v poli.
+    // Vsimnite si, ze tato metoda pracuje s objektami, len cez interface Object2D
+    // a vobec ju nezaujima, ci je objekt typu Circle alebo Triangle.
+    // Jedine co tuto metodu zaujima je, ze tieto objekty
+    // implementuju metodu calculateArea.
+   public static double calculateSum(Object2D[] objects)
+    {
+      double sum = 0.0;
+      foreach (Object2D obj in objects)
+      {
+        sum = sum + obj.calculateArea();
+      }
+      return sum;
+    }
+
+    static void Main(string[] args)
+    {
+      // Vytvorime pole typu Object2D, do ktoreho
+      // mozeme vkladat instancie vsetkych tried, ktore
+      // interface Object2D implementuju.
+      Object2D[] objs = new Object2D[5];
+      objs[0] = new Circle(19, Color.BLUE);
+      objs[1] = new Circle(15);
+      objs[2] = new Triangle(5, 5, 5);
+      objs[3] = new Triangle(2, 1.5, 1.5, Color.RED);
+      objs[4] = new Triangle(3, 3, 3, Color.WHITE);
+
+      double sumOfAreas = calculateSum(objs);
+      Console.WriteLine("Sum of areas: " + sumOfAreas);
+
+      Console.WriteLine("Colors:");
+      foreach (Object2D obj in objs)
+      {
+        Console.WriteLine(obj.getColorAsString());
+      }
+      Console.ReadLine();
+    }
+  }
+}
+```
 # Príklad č. 2: Objektová reprezentácia a implementácia listu"
 
 Napíšte **2** rôzne implementácie rozhrania pre štruktúru reprezentujúcu **list** celých čísel, tzn. **int**-ov podľa interfacu definovaného nižšie.
