@@ -27,7 +27,7 @@ Každý útvar musí vedieť:
 
 Na záver napíšte metódu, ktorá dostane na vstup zoznam inštancií (napr. kruh, kruh, štvorec...) týchto útvarov a vráti súčet ich obsahov.
 
-# Príklad č. 2: Objektová reprezentácia a implementácia listu"
+# Príklad č. 2: Objektová reprezentácia a implementácia listu
 
 Napíšte **2** rôzne implementácie rozhrania pre štruktúru reprezentujúcu **list** celých čísel, tzn. **int**-ov podľa interfacu definovaného nižšie.
 Prvá implementácia musí byť **spojákom (LinkedList)** a druhá **poľom (ArrayList)**.
