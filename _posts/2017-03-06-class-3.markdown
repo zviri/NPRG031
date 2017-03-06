@@ -27,7 +27,6 @@ Každý útvar musí vedieť:
 
 Na záver napíšte metódu, ktorá dostane na vstup zoznam inštancií (napr. kruh, kruh, štvorec...) týchto útvarov a vráti súčet ich obsahov.
 
-<<<<<<< HEAD
 **Riešenie:**
 ```c#
 namespace Class3
@@ -182,10 +181,8 @@ namespace Class3
   }
 }
 ```
-# Príklad č. 2: Objektová reprezentácia a implementácia listu"
-=======
+
 # Príklad č. 2: Objektová reprezentácia a implementácia listu
->>>>>>> 0e86ffe2496683c6c05c31e9d7da6000b842ba01
 
 Napíšte **2** rôzne implementácie rozhrania pre štruktúru reprezentujúcu **list** celých čísel, tzn. **int**-ov podľa interfacu definovaného nižšie.
 Prvá implementácia musí byť **spojákom (LinkedList)** a druhá **poľom (ArrayList)**.
