@@ -59,7 +59,8 @@ namespace Class3
     protected Color color = Color.BLACK;
 
     // Implementaciu metody calculateArea este nebudeme implementovat a
-    // preto ju oznacime klucovym slovom abstract a nechame ju bez implementacie.
+    // preto ju oznacime klucovym slovom abstract a nechame
+    // ju bez implementacie.
     public abstract double calculateArea();
 
     // Naimplementujeme metodu getColorAsString interfacu Object2D.
