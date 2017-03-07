@@ -193,93 +193,162 @@ Ak si všimnete nejaký kód, ktorý by si dal vyabstrahovať a použiť pre obe
 tak ho vložte do abstraktnej triedy, ktorú si vytvorte (podobne ako u príkladu č. 1).
 
 ```c#
-interface IList
+namespace Class3
 {
-  // appends one element to the end of the list
-  void add(int element);
+    // Spolocny interface pre datovu strukturu reprezentujucu list int-ov.
+    public interface IList
+    {
+        // Vlozi jeden prvok na koniec listu.
+        void add(int element);
 
-  // returns element on given index (index starts at 0!)
-  int get(int index);
+        // Vrati prvok v zozname na danom indexe, index zacina na 0.
+        // Ak zadame neplatny index, napr. mensi ako 0 alebo vacsi ako je
+        // pocet prvkov v liste, tak vrati 0.
+        int get(int index);
 
-  // returns the size of the list, i.e., number of elements in the list
-  int size();
+        // Vrati pocet prvkov v liste.
+        int size();
 
-  // remove the first occurrence of the given element in the list.
-  int remove(int element);
+        // Odstrani prvy vyskyt prvku v liste.
+        void remove(int element);
 
-  // prints the elements in the list on one line, e.g. "1 2 3 4 5"
-  void print();
+        // Vypise list na jednom riadku do konzole.
+        void print();
+    }
+
+    // Implementacia listu pomocou spojoveho zoznamu.
+    class LinkedList : IList
+    {
+        // Trieda reprezentujuca jeden uzol v zozname.
+        // Triedu si kludne upravte/prisposobte, ako potrebujete.
+        class Node
+        {
+            private int value = 0;   // ulozena hodnota v uzle.
+            private Node next = null;   // referencia na dalsi prvok v zozname.
+            // V tomto pripade budete pouzivat referenciu miesto pointra ako
+            // to bolo v pascale. Poslednemu prvku nastavte hodnotu next
+            // na null. Ci ste na konci zoznamu mozete potom kontrolovat
+            // pomocout next != null
+
+            // Konstruktor pre vytvorenie uzlu.
+            public Node(int value, Node next)
+            {
+                this.value = value;
+                this.next = next;
+            }
+
+            // Metoda pre citanie hodnoty uzlu.
+            public int getValue()
+            {
+                return value;
+            }
+
+            // Metoda pre citanie nasledovnika.
+            public Node getNext()
+            {
+                return next;
+            }
+        }
+
+        // Koren spojaku.
+        private Node root = null;
+
+        public void add(int element)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int get(int index)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void print()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void remove(int element)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int size()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    // Implementacia listu pomocou pola.
+    // V tomto pripade budete prvky listu ukladat do pola.
+    // Kedze neviete kolko prvkov do listu pojde, tak si musite
+    // toto pole najprv nainicializovat na nejaku dlzku.
+    // Ak pocet prvkov v liste prekroci dlzku pola,
+    // tak nainicializujete nove dlhsie pole (napr. 2 krat dlshie),
+    // stare pole prekopirujete do noveho pola a pokracujete dalej.
+    class ArrayList : IList
+    {
+        // Dlzka prveho pola, ktore inicializujete.
+        private const int INIT_SIZE = 2;
+
+        // Pole do ktoreho budete ukladat prvky listu.
+        private int[] arr = new int[INIT_SIZE];
+
+        public void add(int element)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int get(int index)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void print()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void remove(int element)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int size()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Testovaci kod.
+
+            IList list = new LinkedList();
+            // Implementacia s ArrayList-om musi davat rovnake vystupy.
+            // IList list = new ArrayList();
+            list.add(1);
+            list.add(2);
+            list.add(3);
+            list.add(4);
+            list.add(1);
+            list.print(); // vypise "1 2 3 4 1"
+            Console.WriteLine("Size:" + list.size()); // vypise 5
+
+            list.remove(1);
+            list.remove(3);
+            list.print(); // vypise "2 4 1"
+            Console.WriteLine("Size:" + list.size()); // vypise 3
+
+            // vypise 4
+            Console.WriteLine("Element on index 1 is: " + list.get(1));
+
+            Console.ReadLine();
+        }
+    }
 }
-
-class LinkedList : IList
-{
-  public void add(int element)
-  {
-      throw new NotImplementedException();
-  }
-
-  public int get(int index)
-  {
-      throw new NotImplementedException();
-  }
-
-  public int remove(int element)
-  {
-      throw new NotImplementedException();
-  }
-
-  public int size()
-  {
-      throw new NotImplementedException();
-  }
-
-  public void print()
-  {
-      throw new NotImplementedException();
-  }
-}
-
-class ArrayList : IList
-{
-  public void add(int element)
-  {
-      throw new NotImplementedException();
-  }
-
-  public int get(int index)
-  {
-      throw new NotImplementedException();
-  }
-
-  public int remove(int element)
-  {
-      throw new NotImplementedException();
-  }
-
-  public int size()
-  {
-      throw new NotImplementedException();
-  }
-
-  public void print()
-  {
-      throw new NotImplementedException();
-  }
-}
-
-static void Main(string[] args)
-{
-  IList list = new LinkedList();
-  // Must print the same thing for both implementations!
-  // IList list = new LinkedList();
-  list1.add(1);
-  list1.add(2);
-  list1.add(3);
-  list1.add(4);
-  list1.add(1);
-  list1.print(); // prints "1 2 3 4 1"
-}
-
 ```
 
 # Domáca úloha č. 1
