@@ -1,0 +1,156 @@
+---
+layout: post
+title:  "Cvičenie č. 4 - OOP druhýkrát"
+date: 2017-03-13 5:01:00 +0100
+categories: NPRG031
+---
+# Opakovanie terminológie
+
+* trieda vs objekt vs inštancia
+* konštruktor
+* virtuálna metóda
+  * modifikátory `virtual` a `override`
+  * `interface`
+* daľšie modifikátory:
+  * `public`
+  * `private`
+  * `protected`
+  * `static`
+
+# Úloha č. 1: Nájdi chybu
+
+**Dedičnosť a virtuálne metódy**
+```c#
+class Fruit {
+  public virtual String getTaste() { return "salty"; }
+}
+
+class Apple : Fruit {
+  public override String getTaste() { return "sweet"; }
+
+  public String getColor() { return "red"; }
+}
+
+class Lemon : Fruit {
+  public String getColor() { return "yellow"; }
+}
+
+static void Main(string[] args) {
+  Apple apple = new Apple();
+  Fruit fruit = new Apple();
+  Lemon lemon = new Lemon();
+  Fruit fruit2 = new Lemon();
+  Lemon fruit3 = new Apple();
+
+  Console.WriteLine(Apple.getTaste());
+  Console.WriteLine(apple.getTaste());
+  Console.WriteLine(fruit.getTaste());
+  Console.WriteLine(lemon.getTaste());
+  Console.WriteLine(fruit2.getTaste());
+
+  Console.WriteLine(fruit.getColor());
+  Console.WriteLine(lemon.getColor());
+}
+```
+
+**Modifikátory prístupu**
+```c#
+class Fruit {
+  private String taste = "salty";
+  protected String color = "blue";
+  public int weight = 1;
+
+  public String getTaste() { return taste; }
+}
+
+class Apple : Fruit {
+  public Apple(String taste) { this.getTaste = taste; }
+}
+
+static void Main(string[] args) {
+  Apple apple = new Apple("sweet");
+  apple.getTaste = "bitter";
+  apple.color = "red";
+  apple.weight = 10;
+}
+```
+
+**Modifikátor static 1.**
+```c#
+class Fruit {
+    public String taste = "salty";
+    public static String color = "blue";
+
+    public String getTaste() {
+        return taste;
+    }
+
+    public String getColor() {
+        return color;
+    }
+}
+
+static void Main(string[] args)
+{
+    Fruit fruit = new Fruit();
+    fruit.taste = "bitter";
+    fruit.color = "red";
+
+    Fruit.taste = "sour";
+    Fruit.color = "green";
+}
+```
+
+**Modifikátor static 2.**
+```c#
+static class Fruit {
+  public String taste = "salty";
+  public static String color = "blue";
+
+  public String getTaste() {
+    return taste;
+  }
+
+  public String getColor() {
+    return color;
+  }
+}
+
+static void Main(string[] args) {
+  Fruit fruit = new Fruit();
+}
+```
+
+# Úloha č. 2: Generické rozšírenie listu
+
+Rozšírte vašu implementáciu listu tak, aby ste doňho mohli dávať objekty ľubovoľného typu.
+
+# Domáca úloha č 1. (povinná): Kontrola zaměstnanců
+
+Vašu povinnú domácu úlohu tentokrát nájdete v [CodEx](https://codex.ms.mff.cuni.cz/codex-prg/)-e.
+
+**Poznámky:**
+* Vaše riešene musí používať nejakú vami napísanú dynamickú dátovú štruktúru
+  * list z prvej domácej úlohy je OK
+  * dátové štruktúry poskytované C#-pom sú zakázané
+  * použitie staticky alokovaného pola s nejakou veľkou dĺžkou je zakázané tiež
+* Vyhľadávanie prvku v čase O(N) je OK
+
+**Termín odovzdania: 19. 3. 2017(23:59)**
+
+**Spôsob odovzdania: CodEx** (odovzdávajte hlavný zdroják obsahujúci metódu `main`)
+
+**Počet bodov: 20**
+
+# Domáca úloha č 2. (bonusová): Efektívna implementácia print-u
+
+Niekoľko z vás si všimlo, že so zadefinovaným `interface`-om pre náš **list** nie je
+možné naimplementovať abstraktný print, ktorý by používal `ArrayList` aj `LinkedList`
+bez toho, aby print `LinkedList`-u nebol v čase **O(n^2)**. Vašou úlohou je navrhnúť novú abstrakciu (nové metódy, triedy alebo interface-y),
+ktoré vám umožnia naimplementovať abstraktný print v čase **O(n)** pre `ArrayList` aj `LinkedList`.
+
+**Termín odovzdania: 19. 3. 2017(23:59)**
+
+**Spôsob odovzdania: zdrojový kód mailom**
+
+**Počet bodov: 20**
