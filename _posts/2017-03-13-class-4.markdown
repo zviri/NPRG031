@@ -36,20 +36,31 @@ class Lemon : Fruit {
 }
 
 static void Main(string[] args) {
-  Apple apple = new Apple();
+  Apple apple = new Apple(); // OK
+
+  // OK: priradzovat specificku instanciu do predka vo forme
+  // triedy/interfacu je ok.
   Fruit fruit = new Apple();
-  Lemon lemon = new Lemon();
-  Fruit fruit2 = new Lemon();
+
+  Lemon lemon = new Lemon(); // OK
+  Fruit fruit2 = new Lemon(); // OK
+
+  // Chyba: Aj ked Lemon a Apple maju spolocneho predka,
+  // tak su to 2 rozne typy.
   Lemon fruit3 = new Apple();
 
+  // Chyba: staticke volanie nestatickej metody.
   Console.WriteLine(Apple.getTaste());
-  Console.WriteLine(apple.getTaste());
-  Console.WriteLine(fruit.getTaste());
-  Console.WriteLine(lemon.getTaste());
-  Console.WriteLine(fruit2.getTaste());
 
+  Console.WriteLine(apple.getTaste()); // OK: vypise "sweet"
+  Console.WriteLine(fruit.getTaste()); // OK: vypise "sweet"
+  Console.WriteLine(lemon.getTaste()); // OK: vypise "salty"
+  Console.WriteLine(fruit2.getTaste()); // OK: vypise "salty"
+
+  // Chyba: Typ Fruit nema zadefinovanu metodu getColor.
   Console.WriteLine(fruit.getColor());
-  Console.WriteLine(lemon.getColor());
+
+  Console.WriteLine(lemon.getColor()); // OK: vypise "yellow"
 }
 ```
 
@@ -64,14 +75,17 @@ class Fruit {
 }
 
 class Apple : Fruit {
-  public Apple(String taste) { this.getTaste = taste; }
+  // Chyba: atribut taste je private, tzn. nie je mozne donho pristupovat
+  // v ramci triedy Apple. Aby toto fungovalo musite upravit modifikator
+  // na protected.
+  public Apple(String taste) { this.taste = taste; }
 }
 
 static void Main(string[] args) {
-  Apple apple = new Apple("sweet");
-  apple.getTaste = "bitter";
-  apple.color = "red";
-  apple.weight = 10;
+  Apple apple = new Apple("sweet"); // OK
+  apple.taste = "bitter"; // Chyba: atribut je private
+  apple.color = "red"; // Chyba: atribut je protected
+  apple.weight = 10; // OK: atribut je public
 }
 ```
 
@@ -82,41 +96,47 @@ class Fruit {
     public static String color = "blue";
 
     public String getTaste() {
-        return taste;
+        return taste; // OK
     }
 
     public String getColor() {
+        // OK: Z nestatickej metody mozete pristupovat k statickemu atributu.
         return color;
     }
 }
 
 static void Main(string[] args)
 {
-    Fruit fruit = new Fruit();
-    fruit.taste = "bitter";
-    fruit.color = "red";
+    Fruit fruit = new Fruit(); // OK
+    fruit.taste = "bitter"; // OK
+    fruit.color = "red"; // Chyba: nestaticky pristup k statickemu atributu.
 
-    Fruit.taste = "sour";
-    Fruit.color = "green";
+    Fruit.taste = "sour"; // Chyba: staticky pristup k nestatickemu atributu.
+    Fruit.color = "green"; // OK
 }
 ```
 
 **Modifikátor static 2.**
 ```c#
 static class Fruit {
+  // Chyba: Staticka trieda moze obsahovat len statickych clenov.
   public String taste = "salty";
-  public static String color = "blue";
 
+  public static String color = "blue"; // OK
+
+  // Chyba: Staticka trieda moze obsahovat len statickych clenov.
   public String getTaste() {
     return taste;
   }
 
+  // Chyba: Staticka trieda moze obsahovat len statickych clenov.
   public String getColor() {
     return color;
   }
 }
 
 static void Main(string[] args) {
+  // Chyba: Staticka trieda sa neda instanciovat.
   Fruit fruit = new Fruit();
 }
 ```
@@ -148,6 +168,14 @@ Niekoľko z vás si všimlo, že so zadefinovaným `interface`-om pre náš **li
 možné naimplementovať abstraktný print, ktorý by používal `ArrayList` aj `LinkedList`
 bez toho, aby print `LinkedList`-u nebol v čase **O(n^2)**. Vašou úlohou je navrhnúť novú abstrakciu (nové metódy, triedy alebo interface-y),
 ktoré vám umožnia naimplementovať abstraktný print v čase **O(n)** pre `ArrayList` aj `LinkedList`.
+
+**Hint:** Vytvorte si nový `interface Iterator`, s metódami:
+
+* **next()** - vráť mi ďalší prvok
+* **hasNext()** - vráti `True` ak ešte nasleduje ďalši prvok, inak `False`
+
+Potom pre `LinkedList` aj `ArrayList` naimplementujte vlastný iterátor a tento iterátor si vráťte novou metódou listu `getIterator`.
+
 
 **Termín odovzdania: 19. 3. 2017(23:59)**
 
