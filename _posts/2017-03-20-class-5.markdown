@@ -1,0 +1,106 @@
+---
+layout: post
+title:  "Cvičenie č. 5 - OOP tretíkrát - iterátor, generický sort"
+date: 2017-03-20 5:01:00 +0100
+categories: NPRG031
+---
+
+# Úloha č 1.: Efektívna implementácia print-u
+
+**Riešenie bonusovej domácej úlohy z minulého cvičenia.**
+
+**Zadanie:**
+
+Niekoľko z vás si všimlo, že so zadefinovaným `interface`-om pre náš **list** nie je
+možné naimplementovať abstraktný print, ktorý by používal `ArrayList` aj `LinkedList`
+bez toho, aby print `LinkedList`-u nebol v čase **O(n^2)**. Vašou úlohou je navrhnúť novú abstrakciu (nové metódy, triedy alebo interface-y),
+ktoré vám umožnia naimplementovať abstraktný print v čase **O(n)** pre `ArrayList` aj `LinkedList`.
+
+**Hint:** Vytvorte si nový `interface Iterator`, s metódami:
+
+* **next()** - vráť mi ďalší prvok
+* **hasNext()** - vráti `True` ak ešte nasleduje ďalši prvok, inak `False`
+
+Potom pre `LinkedList` aj `ArrayList` naimplementujte vlastný iterátor a tento iterátor si vráťte novou metódou listu `getIterator`.
+
+**Poznámky:**
+
+* Takéto rozhranie skutočne v **C#** existuje, viz. **[IEnumerable](https://msdn.microsoft.com/en-us/library/system.collections.ienumerable(v=vs.110).aspx){:target="_blank"}** a **[IEnumerator](https://msdn.microsoft.com/en-us/library/system.collections.ienumerator(v=vs.110).aspx){:target="_blank"}**.
+* ak toto rozhranie naimplementujete, tak na vašu kolekciu začne fungovať cyklus `foreach`.
+
+# Úloha č 2.: Generický sort
+
+Pomocou vhodnej abstrakcie (vymyslite **interface**-y) napíšte statickú metódu `sort`, ktorou budete môcť
+zoradiť pole ľubovoľných objektov.
+
+Začnite kódom nižšie, chcete, aby vaša metóda `sort` bola schopná zoradiť polia `fruits` aj `gemstones`.
+
+```c#
+class Fruit
+{
+  private String name;
+  private double weight;
+
+  public Fruit(String name, double weight) {
+    this.name = name;
+    this.weight = weight;
+  }
+
+  public String getName() { return name; }
+
+  public double getWeight() { return weight; }
+}
+
+class Gemstone
+{
+  private String name;
+  private double hardness;
+
+  public Gemstone(String name, double hardness) {
+    this.name = name;
+    this.hardness = hardness;
+  }
+
+  public String getName() { return name; }
+
+  public double getHardness() { return hardness; }
+}
+
+class Program
+{
+  static void Main(string[] args) {        
+
+      Fruit[] fruits = new Fruit[] {
+          new Fruit("apple", 5.0),
+          new Fruit("orange", 2.0),
+          new Fruit("lemon", 10.0),
+      };
+      // sort(fruits) by weight
+
+      Gemstone[] gemstones = new Gemstone[] {
+          new Gemstone("diamond", 150.0),
+          new Gemstone("emerald", 82.0),
+          new Gemstone("opal", 100.0),
+      };
+      // sort(gemstones) by hardness
+  }
+}
+```
+
+# Domáca úloha: Fronta na kafe
+
+Vašu povinnú domácu úlohu nájdete opäť v [CodEx](https://codex.ms.mff.cuni.cz/codex-prg/)-e.
+
+**Dodatočné požiadavky:**
+* Na riešenie použite tzv. **prioritnú frontu**
+  * prioritná fronta sa od obyčajnej fronty líši tým, že prvky v nej sú vždy zoradené podľa nejakej hodnoty
+  * napíšte si túto dátovú štruktúru a vytvore preňu vhodný `interface` (podobne ako u listu)
+  * aj keď v zadaní je obmedzenie na max. 100 000 osôb, tak nepoužívajte žiadne pole s fixnou dĺžkou 100 000
+    * môžete použit/upraviť svoj `LinkedList` alebo `ArrayList` z prvej domácej úlohy (`LinkedList` je vhodnejší)
+  * operácia na získanie/extrakciu minima z aktualnej prioritnej fronty musí byť v čase ostre menšom ako **O(n)**, tzn. buď **O(1)** alebo **O(log(n))**
+
+**Termín odovzdania: 26. 3. 2017(23:59)**
+
+**Spôsob odovzdania: CodEx** (odovzdávajte hlavný zdroják obsahujúci metódu `main`)
+
+**Počet bodov: 20**
