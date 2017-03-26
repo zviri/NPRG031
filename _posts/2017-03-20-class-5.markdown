@@ -93,67 +93,67 @@ class LinkedList<T> : ListBase<T> {
     public void setValue(T value) {
       this.value = value;
     }
-}
+  }
 
-private class LinkedListIterator<T> : Iterator<T> {
-    Node<T> current;
-    public LinkedListIterator(Node<T> startNode) {
-      this.current = startNode;
+  private class LinkedListIterator<T> : Iterator<T> {
+      Node<T> current;
+      public LinkedListIterator(Node<T> startNode) {
+        this.current = startNode;
+      }
+
+      public T getNext() {
+        T value = current.getValue();
+        current = current.getNext();
+        return value;
+      }
+
+      public bool hasNext() {
+        return current.getNext() != null;
+      }
+  }
+
+  public override Iterator<T> getIterator() {
+    return new LinkedListIterator<T>(this.root);
+  }
+
+  public override void add(T element) {
+    Node<T> iter = root;
+    while (iter.getNext() != null) {
+      iter = iter.getNext();
     }
+    iter.setValue(element);
+    iter.setNext(new Node<T>());
+  }
 
-    public T getNext() {
-      T value = current.getValue();
-      current = current.getNext();
-      return value;
+  public override T get(int index) {
+    Node<T> iter = root;
+    int i = 0;
+    while (iter.getNext() != null && i < index) {
+      i++;
+      iter = iter.getNext();
     }
-
-    public bool hasNext() {
-      return current.getNext() != null;
-    }
-}
-
-public override Iterator<T> getIterator() {
-  return new LinkedListIterator<T>(this.root);
-}
-
-public override void add(T element) {
-  Node<T> iter = root;
-  while (iter.getNext() != null) {
-    iter = iter.getNext();
-  }
-  iter.setValue(element);
-  iter.setNext(new Node<T>());
-}
-
-public override T get(int index) {
-  Node<T> iter = root;
-  int i = 0;
-  while (iter.getNext() != null && i < index) {
-    i++;
-    iter = iter.getNext();
-  }
-  if (i == index) {
-    return iter.getValue();
-  } else {
-    throw new IndexOutOfRangeException();
-  }
-}
-
-public override void remove(T element) {
-  Node<T> iter = root;
-  Node<T> prev = null;
-  while (iter.getNext() != null && !iter.getValue().Equals(element)) {
-    prev = iter;
-    iter = iter.getNext();
-  }
-  if (iter.getValue().Equals(element)) {
-    if (prev == null) {
-      this.root = iter.getNext();
+    if (i == index) {
+      return iter.getValue();
     } else {
-      prev.setNext(iter.getNext());
+      throw new IndexOutOfRangeException();
     }
   }
-}
+
+  public override void remove(T element) {
+    Node<T> iter = root;
+    Node<T> prev = null;
+    while (iter.getNext() != null && !iter.getValue().Equals(element)) {
+      prev = iter;
+      iter = iter.getNext();
+    }
+    if (iter.getValue().Equals(element)) {
+      if (prev == null) {
+        this.root = iter.getNext();
+      } else {
+        prev.setNext(iter.getNext());
+      }
+    }
+  }
 
   public override int size() {
     Node<T> iter = root;
