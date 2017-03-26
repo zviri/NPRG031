@@ -28,6 +28,166 @@ Potom pre `LinkedList` aj `ArrayList` naimplementujte vlastný iterátor a tento
 * Takéto rozhranie skutočne v **C#** existuje, viz. **[IEnumerable](https://msdn.microsoft.com/en-us/library/system.collections.ienumerable(v=vs.110).aspx){:target="_blank"}** a **[IEnumerator](https://msdn.microsoft.com/en-us/library/system.collections.ienumerator(v=vs.110).aspx){:target="_blank"}**.
 * ak toto rozhranie naimplementujete, tak na vašu kolekciu začne fungovať cyklus `foreach`.
 
+**Riešenie:**
+```c#
+public interface Iterator<T> {
+  bool hasNext();
+  T getNext();
+}
+
+public interface Iterable<T> {
+  Iterator<T> getIterator();
+}
+
+public interface IList<T> : Iterable<T> {
+  void add(T element);
+  T get(int index);
+  int size();
+  void remove(T element);
+  void print();
+}
+
+abstract class ListBase<T> : IList<T> {
+  public abstract void add(T element);
+  public abstract T get(int index);
+  public abstract void remove(T element);
+  public abstract int size();
+  public abstract Iterator<T> getIterator();
+
+  public void print() {
+    Iterator<T> iterator = this.getIterator();
+    while(iterator.hasNext()) {
+      Console.Write(iterator.getNext() + ",");
+    }
+    Console.WriteLine();
+  }
+}
+
+class LinkedList<T> : ListBase<T> {
+  private Node<T> root = new Node<T>();
+
+  private class Node<T> {
+    private T value;
+    private Node<T> next;
+
+    public Node() { }
+    public Node(T value) : this(value, null) { }
+
+    public Node(T value, Node<T> next) {
+      this.value = value;
+      this.next = next;
+    }
+
+    public T getValue() {
+      return this.value;
+    }
+
+    public Node<T> getNext() {
+      return this.next;
+    }
+
+    public void setNext(Node<T> next) {
+      this.next = next;
+    }
+
+    public void setValue(T value) {
+      this.value = value;
+    }
+}
+
+private class LinkedListIterator<T> : Iterator<T> {
+    Node<T> current;
+    public LinkedListIterator(Node<T> startNode) {
+      this.current = startNode;
+    }
+
+    public T getNext() {
+      T value = current.getValue();
+      current = current.getNext();
+      return value;
+    }
+
+    public bool hasNext() {
+      return current.getNext() != null;
+    }
+}
+
+public override Iterator<T> getIterator() {
+  return new LinkedListIterator<T>(this.root);
+}
+
+public override void add(T element) {
+  Node<T> iter = root;
+  while (iter.getNext() != null) {
+    iter = iter.getNext();
+  }
+  iter.setValue(element);
+  iter.setNext(new Node<T>());
+}
+
+public override T get(int index) {
+  Node<T> iter = root;
+  int i = 0;
+  while (iter.getNext() != null && i < index) {
+    i++;
+    iter = iter.getNext();
+  }
+  if (i == index) {
+    return iter.getValue();
+  } else {
+    throw new IndexOutOfRangeException();
+  }
+}
+
+public override void remove(T element) {
+  Node<T> iter = root;
+  Node<T> prev = null;
+  while (iter.getNext() != null && !iter.getValue().Equals(element)) {
+    prev = iter;
+    iter = iter.getNext();
+  }
+  if (iter.getValue().Equals(element)) {
+    if (prev == null) {
+      this.root = iter.getNext();
+    } else {
+      prev.setNext(iter.getNext());
+    }
+  }
+}
+
+  public override int size() {
+    Node<T> iter = root;
+    int size = 0;
+    while (iter.getNext() != null) {
+      iter = iter.getNext();
+      size++;
+    }
+    return size;
+  }
+}
+
+class Program {
+  static void Main(string[] args) {
+    IList<int> list = new LinkedList<int>();
+    list.add(1);
+    list.add(2);
+    list.add(3);
+    list.add(4);
+    list.add(5);
+
+    Console.WriteLine("List size:" + list.size());
+    Console.WriteLine("Element at index 3: " + list.get(3));
+    list.remove(4);
+    Console.WriteLine("Element at index 3: " + list.get(3));
+    Console.WriteLine("List size:" + list.size());
+
+    Console.WriteLine("Print:");
+    list.print();
+    Console.ReadLine();
+  }
+}
+```
+
 # Úloha č 2.: Generický sort
 
 Pomocou vhodnej abstrakcie (vymyslite **interface**-y) napíšte statickú metódu `sort`, ktorou budete môcť
@@ -86,6 +246,213 @@ class Program
   }
 }
 ```
+
+**Riešenie pomocou interfacu Comparable:**
+```c#
+interface Comparable<T> {
+  int compareTo(T other);
+}
+
+class Fruit : Comparable<Fruit>
+{
+  private String name;
+  private double weight;
+
+  public Fruit(String name, double weight) {
+    this.name = name;
+    this.weight = weight;
+  }
+
+  public int compareTo(Fruit other) {
+    if (this.getWeight() < other.getWeight()) {
+      return -1;
+    } else if (this.getWeight() == other.getWeight()) {
+      return 0;
+    } else {
+      return 1;
+    }
+  }
+
+  public String getName() { return name; }
+
+  public double getWeight() { return weight; }
+}
+
+class Gemstone : Comparable<Gemstone>
+{
+  private String name;
+  private double hardness;
+
+  public Gemstone(String name, double hardness) {
+    this.name = name;
+    this.hardness = hardness;
+  }
+
+  public int compareTo(Gemstone other)
+  {
+    if (this.getHardness() < other.getHardness()) {
+      return -1;
+    }
+    else if (this.getHardness() == other.getHardness()) {
+      return 0;
+    }
+    else {
+      return 1;
+    }
+  }
+
+  public String getName() { return name; }
+
+  public double getHardness() { return hardness; }
+}
+
+class Program {
+  public static void sort<T>(T[] array) where T : Comparable<T> {
+    for (int i = 0; i < array.Length; i++) {
+      for (int j = i + 1; j < array.Length; j++) {
+        if (array[i].compareTo(array[j]) > 0) {
+          T temp = array[i];
+          array[i] = array[j];
+          array[j] = temp;
+        }
+      }
+    }
+  }
+
+  static void Main(string[] args) {        
+    Fruit[] fruits = new Fruit[] {
+      new Fruit("apple", 5.0),
+      new Fruit("orange", 2.0),
+      new Fruit("lemon", 10.0),
+    };
+    sort(fruits); // by weight
+    foreach (Fruit fruit in fruits) {
+      Console.Write(fruit.getWeight() + ", ");
+    }
+    Console.WriteLine();
+
+    Gemstone[] gemstones = new Gemstone[] {
+      new Gemstone("diamond", 150.0),
+      new Gemstone("emerald", 82.0),
+      new Gemstone("opal", 100.0),
+    };
+    sort(gemstones); // by hardness
+    foreach (Gemstone gemstone in gemstones){
+      Console.Write(gemstone.getHardness() + ", ");
+    }
+    Console.WriteLine();
+    Console.ReadLine();
+  }
+}
+```
+
+**Riešenie pomocou interfacu Comparator:**
+```c#
+interface Comparator<T> {
+  int compare(T first, T second);
+}
+
+class Fruit
+{
+  private String name;
+  private double weight;
+
+  public Fruit(String name, double weight) {
+    this.name = name;
+    this.weight = weight;
+  }
+
+  public String getName() { return name; }
+
+  public double getWeight() { return weight; }
+}
+
+class FruitComparator : Comparator<Fruit> {
+  public int compare(Fruit first, Fruit second) {
+    if (first.getWeight() < second.getWeight()) {
+      return -1;
+    }
+    else if (first.getWeight() == second.getWeight()) {
+      return 0;
+    }
+    else {
+      return 1;
+    }
+  }
+}
+
+class Gemstone
+{
+  private String name;
+  private double hardness;
+
+  public Gemstone(String name, double hardness) {
+    this.name = name;
+    this.hardness = hardness;
+  }
+
+  public String getName() { return name; }
+
+  public double getHardness() { return hardness; }
+}
+
+class GemstoneComparator : Comparator<Gemstone> {
+  public int compare(Gemstone first, Gemstone second) {
+    if (first.getHardness() < second.getHardness()) {
+      return -1;
+    }
+    else if (first.getHardness() == second.getHardness()) {
+      return 0;
+    }
+    else {
+      return 1;
+    }
+  }
+}
+
+class Program {
+  public static void sort<T>(T[] array, Comparator<T> comparator) {
+    for (int i = 0; i < array.Length; i++) {
+      for (int j = i + 1; j < array.Length; j++) {
+        if (comparator.compare(array[i], array[j]) > 0) {
+          T temp = array[i];
+          array[i] = array[j];
+          array[j] = temp;
+        }
+      }
+    }
+  }
+
+  static void Main(string[] args) {        
+      Fruit[] fruits = new Fruit[] {
+        new Fruit("apple", 5.0),
+        new Fruit("orange", 2.0),
+        new Fruit("lemon", 10.0),
+      };
+      sort(fruits, new FruitComparator()); // by weight
+      foreach (Fruit fruit in fruits) {
+        Console.Write(fruit.getWeight() + ", ");
+      }
+      Console.WriteLine();
+
+      Gemstone[] gemstones = new Gemstone[] {
+        new Gemstone("diamond", 150.0),
+        new Gemstone("emerald", 82.0),
+        new Gemstone("opal", 100.0),
+      };
+      sort(gemstones, new GemstoneComparator()); // by hardness
+      foreach (Gemstone gemstone in gemstones){
+        Console.Write(gemstone.getHardness() + ", ");
+      }
+      Console.WriteLine();
+      Console.ReadLine();
+  }
+}
+```
+
+**Poznámky:**
+
+* Tieto rozhrania skutočne v **C#** existujú, viz. **[IComparable](https://msdn.microsoft.com/en-us/library/system.icomparable(v=vs.110).aspx){:target="_blank"}** a **[Comparer](https://msdn.microsoft.com/en-us/library/cfttsh47(v=vs.110).aspx){:target="_blank"}**.
 
 # Domáca úloha: Fronta na kafe
 
