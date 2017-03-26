@@ -1,0 +1,61 @@
+---
+layout: post
+title:  "Cvičenie č. 6 - OOP štvrtýkrát - vytváranie objektov"
+date: 2017-03-27 5:01:00 +0100
+categories: NPRG031
+---
+
+# Úloha č. 1: Singleton
+
+Vytvorte triedu, ktorá môže mať len jednu inštanciu.
+
+**Príklad použitia: Logger**
+
+# Úloha č. 2: Príliš veľa atributov
+
+Vytvorte triedu `Person` s nasledujúcimi atribútmi:
+
+* lastName
+* firstName
+* middleName
+* salutation
+* suffix
+* streetAddress
+* city
+* country
+* isFemale
+* isEmployed
+* isHomeOwner
+
+Prípady na zamyslenie:
+* Ako by ste inštanciovali takúto triedu?
+* Čo ak sú niektoré atribúty nepovinné?
+* Čo ak chcem, aby boli inštancie tejto triedy **immutable** (nemenné)?
+
+# Úloha č. 3: Načítanie CSV súboru
+
+Stiahnite si CSV súbor [titanic.txt]({{site.baseurl}}/src/class6/titanic.txt).
+
+Na každom riadku **titanic.txt** sa nachádza záznam
+jedného pasažiera titaniku, atribúty sú oddelené čiarkou a vypísané v tomto poradí:
+
+* PassangerId
+* Class
+* Name
+* Gender
+* Age
+* Ticket
+* Fare
+* Cabin
+* Embarked
+
+**Vašou úlohou je:**
+
+1. vytvoriť triedu reprezentujúcu záznam pasažiera
+1. vytvoriť `Builder` pre túto triedu
+1. načítať pasažierov zo súboru do *List*-u a vypísať ho do konzole
+
+V C# môžete súbor načítať napríklad takto (každý prvok v poli reprezentuje jeden riadok súboru):
+```c#
+string[] lines = System.IO.File.ReadAllLines("C:\\titanic.txt");
+```
