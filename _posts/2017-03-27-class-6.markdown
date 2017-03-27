@@ -34,7 +34,7 @@ Prípady na zamyslenie:
 
 # Úloha č. 3: Načítanie CSV súboru
 
-Stiahnite si CSV súbor [titanic.txt]({{site.baseurl}}/src/class6/titanic.txt).
+Stiahnite si CSV súbor [titanic.txt](https://github.com/zviri/NPRG031/blob/master/src/class6/titanic.txt).
 
 Na každom riadku **titanic.txt** sa nachádza záznam
 jedného pasažiera titaniku, atribúty sú oddelené čiarkou a vypísané v tomto poradí:
