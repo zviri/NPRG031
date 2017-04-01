@@ -11,6 +11,39 @@ Vytvorte triedu, ktorá môže mať len jednu inštanciu.
 
 **Príklad použitia: Logger**
 
+**Riešenie:**
+```c#
+public class Logger {
+  // Privátny konštuktor, aby sme boli schopný kontrolovať
+  // inštanciovanie triedy.
+  private Logger() { }
+
+  // Jedinú inštanciu triedy si uložíme do tohoto attribútu.
+  private static Logger instance = null;
+
+  // Prístup k inštancii.
+  public static Logger getInstance() {
+    if (instance == null) {
+      instance = new Logger();
+    }
+    return instance;
+  }
+
+  // Nestatická metóda na logovanie.
+  public void log(String msg) {
+    Console.WriteLine(msg);
+  }
+}
+
+class Program {
+  // Príklad použitia.
+  static void Main(string[] args) {
+    Logger log = Logger.getInstance();
+    log.log("Hello world!");
+  }
+}
+```
+
 # Úloha č. 2: Príliš veľa atributov
 
 Vytvorte triedu `Person` s nasledujúcimi atribútmi:
@@ -31,6 +64,136 @@ Prípady na zamyslenie:
 * Ako by ste inštanciovali takúto triedu?
 * Čo ak sú niektoré atribúty nepovinné?
 * Čo ak chcem, aby boli inštancie tejto triedy **immutable** (nemenné)?
+
+**Riešenie:**
+```c#
+public class Person {
+  // Znovu použijeme privátny konštuktor,
+  // inštanciáciu triedy necháme na pomocnú Builder triedu.
+  private Person() { }
+
+  // Všetky atribúty označíme private.
+  private String lastName;
+  private String firstName;
+  private String middleName;
+  private String salutation;
+  private String suffix;
+  private String streetAddress;
+  private String city;
+  private String state;
+  private bool isFemale;
+  private bool isEmployed;
+  private bool isHomewOwner;
+
+  // Objekty necháme readonly a prístup k atribútom povolíme len cez
+  // get metódy jednotlivých atribútov.
+  public String getLastName() { return lastName; }
+  public String getFirstName() { return firstName; }
+  public String getMiddleName() { return middleName; }
+  public String getSalutation() { return salutation; }
+  public String getSuffix() { return suffix; }
+  public String getStreetAddress() { return streetAddress; }
+  public String getCity() { return city; }
+  public String getState() { return state; }
+  public bool getIsFemale() { return isFemale; }
+  public bool getIsEmployed() { return isEmployed; }
+  public bool getIsHomewOwner() { return isHomewOwner; }
+
+
+  // Konštrukcia triedy Person bude zapúzderná v triede PersonBuilder.
+  public class PersonBuilder
+  {
+    // Pripravíme si novú inštanciu triedy.
+    Person person;
+    public PersonBuilder() {
+      person = new Person();
+    }
+
+    // Pre každý atribút vytvoríme metódu set, ktorá nastaví
+    // hodnotu danáho atribútu a vráti referenciu na seba samotného,
+    // aby sme volanie týchto metód mohli reťaziť za sebou, viz. main.
+    public PersonBuilder setLastName(String lastName) {
+      // Private atribúty triedy Person sú viditelné aj v triede
+      // PersonBuilder!
+      person.lastName = lastName;
+      return this;
+    }
+
+    public PersonBuilder setFirstName(String firstName) {
+      person.firstName = firstName;
+      return this;
+    }
+
+    public PersonBuilder setMiddleName(String middleName) {
+      person.middleName = middleName;
+      return this;
+    }
+
+    public PersonBuilder setSalutation(String salutation) {
+      person.salutation = salutation;
+      return this;
+    }
+
+    public PersonBuilder setSuffix(String suffix) {
+      person.suffix = suffix;
+      return this;
+    }
+
+    public PersonBuilder setStreetAddress(String streetAddress) {
+      person.streetAddress = streetAddress;
+      return this;
+    }
+
+    public PersonBuilder setCity(String city) {
+      person.city = city;
+      return this;
+    }
+
+    public PersonBuilder setState(String state) {
+      person.state = state;
+      return this;
+    }
+
+    public PersonBuilder setIsFemale(bool isFemale) {
+      person.isFemale = isFemale;
+      return this;
+    }
+
+    public PersonBuilder setIsEmployed(bool isEmployed) {
+      person.isEmployed = isEmployed;
+      return this;
+    }
+
+    public PersonBuilder setIsHomewOwner(bool isHomewOwner) {
+      person.isHomewOwner = isHomewOwner;
+      return this;
+    }
+
+    // Nový objekt si vrátime metódou build.
+    public Person build() {
+      return person;
+    }
+  }
+}
+
+class Program
+{
+  static void Main(string[] args) {
+    Person person = new Person.PersonBuilder()
+        .setFirstName("John")
+        .setLastName("Doe")
+        .setCity("New York")
+        .setIsFemale(false).build();
+  }
+}
+```
+
+**Poznámka:**
+
+Toto je zjednodušené riešenie, vytvorené objekty typu `Person` sú z vonku nemenné,
+ale `PersonBuilder` hodnoty objektu stále môže meniť! Úplne správne riešenie by
+označilo atribúty triedy `Person` pomocu prívlastku `readonly` a všetky hodnoty
+atribútov by sa nastavili až v metóde `build` pomocou konštruktora triedy `Person`.
 
 # Úloha č. 3: Načítanie CSV súboru
 
