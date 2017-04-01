@@ -73,7 +73,7 @@ a skontroluje či sa tento bod nachádza aj vo výseku modrej kružnice. Pomer b
 Podľa popisu vyššie naimplementujte tento algoritmus v **C#** a zdroják mi pošlite mailom.
 Zdroják by mal obsahovať aj testovací kód a implementácia by mala byť v nejakej triede, nechcem vidieť statické metódy.
 
-**Termín odovzdania: 9. 4. 2017(23:59)**
+**Termín odovzdania: 9. 4. 2017 (23:59)**
 
 **Spôsob odovzdania: zdrojový kód mailom**
 
