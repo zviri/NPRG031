@@ -1,0 +1,80 @@
+---
+layout: post
+title:  "Cvičenie č. 7 - Exceptions, Streams, Monte Carlo"
+date: 2017-04-03 5:01:00 +0100
+categories: NPRG031
+---
+
+# Úloha č. 1: CharReader
+
+Vytvorte dve implementácie `ICharReader`-u, jedna bude po jednom načítavať
+znaky z konzole a druhá zo súboru. Použite šablonu nižšie.
+
+```c#
+interface ICharReader {
+  char nextChar();
+}
+
+class ConsoleCharReader : ICharReader {
+  public char nextChar() {
+      throw new NotImplementedException();
+  }
+}
+
+class FileCharReader : ICharReader {
+  public char nextChar() {
+      throw new NotImplementedException();
+  }
+}
+```
+
+# Úloha č. 2: WordReader
+
+Pomocou naimplementovaných `ICharReader`-ov z úlohy 1 vytvorte `WordReader`,
+ktorý bude schopný načítavať stream po slovách. Použite šablonu nižšie.
+Čo presne slovo je nechám na vás, úplne postačí sekať stream po medzerách.
+
+**Otestuje svoju implementáciu s** `ConsoleCharReader`**-om aj** `FileCharReader`**-om.**
+
+```c#
+class WordReader {
+  ICharReader reader;
+  public WordReader(ICharReader reader) {
+    this.reader = reader;
+  }
+
+  public String nextWord() {
+    // doimplementujte
+  }
+}
+```
+
+# Domáca úloha: Aproximácia čísla π
+
+Názvom **Monte Carlo** sa označuje rodina algoritmov, ktorá pri riešení problémov používa náhodu.
+Tento prístup je možné jednoducho ilustrovať na aproximácii čísla π.
+
+Predstavte si kruh vo štvorci:
+
+{: .center}
+![]({{site.baseurl}}/assets/img/pi_circle.png)
+
+1. Obsah modrého kruhu spočítate ako $πr^2$
+1. Obsah sivého štvorca zas ako $4r^2$
+1. Pomer obsahu kruhu voči štvorcu je teda $p=\frac{πr^2}{4r^2}=\frac{π}{4}$
+1. Takže hodnotu π dostaneme ako $π=4p$
+1. Stačí uvažovať červený výsek, pomer $p$ je rovnaký a uľahčí nám to jeho výpočet.
+
+Samotný algoritmus bude uvažovať kruh s polomerom **1**, tzn. že veľkosť hrany štvorca v červenom výseku je tiež **1**.
+Predstavte si, že stred kruhu je v súradnici **0,0**. Algoritmus Monte Carlo začne náhodne generovať body v tomto štvorci
+a skontroluje či sa tento bod nachádza aj vo výseku modrej kružnice. Pomer bodov v kruhu voči všetkým vygenerovaným bodom nám dáva aproximáciu hľadaného $p$.
+Čím viac bodov vygenerujete, tým lepšiu aproximáciu $p$, tzn. aj $π$ dostanete. Počet vygenerovaných bodov musí byť parametrizovateľný, vyskúšajte ako počet bodov ovplyvňuje presnosť odhadu.
+
+Podľa popisu vyššie naimplementujte tento algoritmus v **C#** a zdroják mi pošlite mailom.
+Zdroják by mal obsahovať aj testovací kód a implementácia by mala byť v nejakej triede, nechcem vidieť statické metódy.
+
+**Termín odovzdania: 9. 4. 2017(23:59)**
+
+**Spôsob odovzdania: zdrojový kód mailom**
+
+**Počet bodov: 20**
