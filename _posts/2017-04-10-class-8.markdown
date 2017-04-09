@@ -1,0 +1,22 @@
+---
+layout: post
+title:  "Cvičenie č. 8 - WinForms - okenné aplikácie"
+date: 2017-04-10 5:01:00 +0100
+categories: NPRG031
+---
+
+# Úloha č. 1: Aplikácia stopky
+
+Pomocou **WinForms** naprogramujte aplikáciu stopky podobnú tej na obrázku nižšie:
+
+{: .center}
+<img src="{{site.baseurl}}/assets/img/stopky.png" style="height: 350px;"/>
+
+**Funkcionalita:**
+
+* tlačítka
+  * štart/pauza - naštartuje stopky alebo preruší stopky
+  * reset - zresetuje čas na stopkách
+  * kolo - uloží aktuálny čas na stopkách
+
+**Poďakovanie: Za nápad a zdrojové kódy k aplikácii ďakujem Jiřímu Novotnému.**
