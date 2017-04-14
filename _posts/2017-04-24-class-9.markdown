@@ -1,0 +1,55 @@
+---
+layout: post
+title:  "Cvičenie č. 9 - Dynamické programovanie"
+date: 2017-04-24 5:01:00 +0100
+categories: NPRG031
+---
+
+# Úloha č. 1: Fibonacci
+
+Aké sú problémy implementácie výpočtu **n**-tého Fibonacciho čísla nižšie?
+
+Ako by ste túto implementáciu vylepšili?
+
+```c#
+public static int fibonacci(int n) {
+  if (n == 0) return 0;
+  if (n == 1) return 1;
+  return fibonacci(n - 1) + fibonacci(n - 2);
+}
+```
+
+# Úloha č. 2: Subset sum
+
+Napíšte program, ktorý zistí, či je možne z množiny prirodzených čísel **M** vybrať podmnožinu so súčtom **s** a túto podmnožinu aj vypíše.
+
+**Príklad:** Pre **s = 7** a **M = {1, 4, 9, 3}** program vráti `True` a **{3, 4}**.
+
+Začnite tým, že vypíšete `True` resp. `False` v prípade existencie takej podmnožiny resp. neexistencie.
+
+# Úloha č. 3: : Štvorcová podmatica
+
+Napíšte program, ktorý pre zadanú **0/1 maticu** vypíše velkosť jej najväčšej štvorcovej podmatice obsahujúcej len **jednotky**.
+Napr. pre maticu nižšie vypíše **3**.
+
+```python
+1 1 1 1 0
+0 1 1 1 1
+0 1 1 1 1
+1 0 1 1 1
+0 1 1 1 0
+```
+
+# Domáca úloha č. 1 a 2: Maximální palindrom a Loupežníci
+
+Zadania nájdete v [CodEx](https://codex.ms.mff.cuni.cz/codex-prg/)-e.
+
+**Poznámka:**
+* na vyriešenie oboch úloh musíte použiť dynamické programovanie
+* ak by vám to zas hádzalo **time limit exceeded**, tak to riešiť nebudem
+
+**Termín odovzdania: 7. 5. 2017(23:59)**
+
+**Spôsob odovzdania: CodEx** (odovzdávajte hlavný zdroják obsahujúci metódu `main`)
+
+**Počet bodov: 20 a 30**
