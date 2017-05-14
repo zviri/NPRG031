@@ -1,0 +1,81 @@
+---
+layout: post
+title:  "Cvičenie č. 10 - Zápočtový test č. 1"
+date: 2017-05-14 5:01:00 +0100
+categories: NPRG031
+---
+
+# Úloha: Bludisko
+
+Nájdite najkratšiu cestu z bludiska:
+
+### Príklad
+
+**Vstup**
+
+```java
++-+-+-+-+-+-+-+-+-+-+
+    |       |       |
++-+ + +-+-+ + +-+-+-+
+|   | |       |     |
++ +-+-+ +-+ + + +-+ +
+| | |   |   |   | | |
++ + + +-+ +-+-+-+ + +
+|   | |   |   | |   |
++ +-+ + +-+-+ + +-+-+
+| |   |   |   |   | |
++ + +-+-+ + +-+-+ + +
+|   |     | |   |   |
++-+-+ +-+-+ +-+ +-+ +
+|     |     |     | |
++ +-+-+ +-+-+ +-+ + +
+|   | |     |   |   |
++-+ + +-+-+ +-+ +-+-+
+|   |       |       |
++ +-+ + +-+-+ +-+-+ +
+|     |       |      
++-+-+-+-+-+-+-+-+-+-+
+```
+
+**Výstup**
+```java
++-+-+-+-+-+-+-+-+-+-+
+####|       |       |
++-+#+ +-+-+ + +-+-+-+
+|###| |#####  |     |
++#+-+-+#+-+#+ + +-+ +
+|#| |###|###|   | | |
++#+ +#+-+#+-+-+-+ + +
+|#  |#|###|   | |   |
++#+-+#+#+-+-+ + +-+-+
+|#|###|###|   |   | |
++#+#+-+-+#+ +-+-+ + +
+|###|#####| |   |   |
++-+-+#+-+-+ +-+ +-+ +
+|#####|     |     | |
++#+-+-+ +-+-+ +-+ + +
+|###| |     |   |   |
++-+#+ +-+-+ +-+ +-+-+
+|###|###    |#######|
++#+-+#+#+-+-+#+-+-+#+
+|#####|#######|    ##
++-+-+-+-+-+-+-+-+-+-+
+```
+
+**Poznámky:**
+
+* bludisko načítavajte zo súboru a výstup vypíšte do konzole
+* môžete predpokladať, že na vstup dostanete vždy rozumné bludisko (tzn. nie je treba ošetrovať nesprávny vstup)
+* bludisko na vstupe môže mať rôzne rozmery
+* viete sa hýbať len v štyroch smeroch: hore, dole, doprava, doľava
+* nájdená cesta musí byť najkratšia
+* do bludiska vstupujete vždy z ľavého horného rohu a vystupujete z práveho dolného rohu
+* vaše riešenie si otestujte aspoň na niekoľkých ďalších vstupoch, ktoré si vygenerujte tu: [Maze Generator](http://www.delorie.com/game-room/mazes/genmaze.cgi)
+* **hint: použite BFS, môžete použiť frontu naimplementovanú priamo v C#, i.e. ```Queue<T>```.**
+* **chcem vidieť pekne štrukturovaný kód, tzn.:**
+  * **rozumné využitie tried**
+  * **žiadna metóda by nemala mať viac než 10 riadkov**
+
+**Vaše riešenie aj s testovacím kódom mi pošlite <a href="mailto:{{ site.email }}">mailom</a> (posielajte len čisté zdrojáky).**
+
+<span class="red">**Ďalšie cvičenie odpadáva, opravný termín bude až o 2 týždne.**</span>
