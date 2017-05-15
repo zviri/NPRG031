@@ -71,7 +71,7 @@ Nájdite najkratšiu cestu z bludiska:
 * nájdená cesta musí byť najkratšia
 * do bludiska vstupujete vždy z ľavého horného rohu a vystupujete z práveho dolného rohu
 * vaše riešenie si otestujte aspoň na niekoľkých ďalších vstupoch, ktoré si vygenerujte tu: [Maze Generator](http://www.delorie.com/game-room/mazes/genmaze.cgi)
-* **hint: použite BFS, môžete použiť frontu naimplementovanú priamo v C#, i.e. ```Queue<T>```.**
+* **hint: použite vhodné prehľadávanie, môžete používať dátové štruktúry naimplementovanú priamo v C#, e.g. ```Queue<T>```.**
 * **chcem vidieť pekne štrukturovaný kód, tzn.:**
   * **rozumné využitie tried**
   * **žiadna metóda by nemala mať viac než 10 riadkov**
