@@ -1,0 +1,52 @@
+---
+layout: post
+title:  "Cvičenie č. 11 - Zápočtový test č. 2"
+date: 2017-05-30 5:01:00 +0100
+categories: NPRG031
+---
+
+# Úloha: Počet ostrovov
+
+Na vstup dostanete 2d mapu `1`-čiek (pevnina) a `0` (voda), spočítajte koľko ostrovov sa na tejto mape nachádza.
+Ostrov je tvorený všetkými jednotkami, do ktorých sa dá dostať postupnosťou horizontálnych a vertikálnych posunov.
+
+### Príklad 1
+
+**Vstup**
+
+```java
+11110
+11010
+11000
+00000
+```
+
+**Výstup**
+```java
+1
+```
+
+### Príklad 2
+
+**Vstup**
+
+```java
+11000
+11000
+00100
+00011
+```
+
+**Výstup**
+```java
+3
+```
+
+**Poznámky:**
+
+* bludisko načítavajte zo súboru a výstup vypíšte do konzole
+* môžete predpokladať, že na vstup dostanete vždy rozumné bludisko (tzn. nie je treba ošetrovať nesprávny vstup)
+* bludisko na vstupe môže mať rôzne rozmery
+* **hint: použite vhodné prehľadávanie, môžete používať dátové štruktúry naimplementované priamo v C#, e.g. ```Queue<T>```.**
+
+**Vaše riešenie aj s testovacím kódom mi pošlite <a href="mailto:{{ site.email }}">mailom</a> (posielajte len čisté zdrojáky).**
